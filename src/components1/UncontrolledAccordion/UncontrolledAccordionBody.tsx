@@ -11,7 +11,7 @@ export function UncontrolledAccordionBody(props: AccordionBodyPropsType) {
     if (collapsed) {
         return (
             <div>
-                <button onClick={() => setCollapsed(false)}>collapse</button>
+                {/*<button onClick={() => setCollapsed(false)}>collapse</button>*/}
                 <ul style={{listStyle:"none"}}>
                     <li>css</li>
                     <li>HTML</li>

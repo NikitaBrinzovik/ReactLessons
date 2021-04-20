@@ -1,16 +1,21 @@
 import React from "react";
+import {RatingValueType} from "./Rating";
 
 type StarPropsType = {
     selected: boolean
+    value: RatingValueType
+    onPick: (value: RatingValueType) => void
+
 }
 
 function Star(props: StarPropsType) {
-    if (props.selected === true) {
-        return <span><b>star</b> </span>;
-    } else {
-        return <span>star </span>;
-    }
-    console.log("Star is rendering")
+
+        return <button onClick={ () => { props.onPick(props.value)} }>
+            {props.selected
+                ? <b style={{backgroundColor:"gold"}}> star</b>
+                : " star"}
+        </button>
+
 
 }
 

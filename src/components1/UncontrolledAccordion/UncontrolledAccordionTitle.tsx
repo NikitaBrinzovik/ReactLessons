@@ -1,10 +1,11 @@
 import React from "react";
 
-type AccordionTitlePropsType = {
+type UncontrolledAccordionTitlePropsType = {
     title: string
+    onClick: () => void
 }
 
-export function UncontrolledAccordionTitle(props: AccordionTitlePropsType) {
+export function UncontrolledAccordionTitle(props: UncontrolledAccordionTitlePropsType) {
     console.log("AccordionTitle is rendering")
-    return <h3>{props.title}</h3>
+    return <h3 onClick={() => {props.onClick()}}>{props.title}</h3>
 }
