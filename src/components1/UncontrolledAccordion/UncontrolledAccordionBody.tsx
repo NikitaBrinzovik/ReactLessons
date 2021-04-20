@@ -4,7 +4,7 @@ type AccordionBodyPropsType = {
     collapsed: boolean
 }
 
-export function AccordionBody(props: AccordionBodyPropsType) {
+export function UncontrolledAccordionBody(props: AccordionBodyPropsType) {
     console.log("AccordionBody is rendering")
 
     if (!props.collapsed ) {

@@ -3,7 +3,7 @@ import {AccordionTitle} from "./AccordionTitle";
 import {AccordionBody} from "./AccordionBody";
 
 type AccordionPropsType = {
-    title: string
+    titleValue: string
     collapsed: boolean
 }
 
@@ -12,7 +12,7 @@ function Accordion(props: AccordionPropsType) {
     console.log("Accordion is rendering")
     return (
         <div>
-            <AccordionTitle title={props.title}/>
+            <AccordionTitle title={props.titleValue}/>
             <AccordionBody collapsed={props.collapsed}/>
         </div>
     );
