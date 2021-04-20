@@ -1,21 +1,32 @@
 import React, {useState} from 'react';
 import './App.css';
-import Accordion from './components1/Accordion/accordion';
+import {Accordion} from './components1/Accordion/accordion';
 import Rating, {RatingValueType} from './components1/Accordion/Rating';
-import {Lamp} from "./components1/onOff/onOff";
 import UncontrolledAccordion from "./components1/UncontrolledAccordion/UncontrolledAccordion";
 import UncontrolledRating from './components1/UncontrolledAccordion/UncontrolledRating';
+import {UncontrolledLamp} from "./components1/UncontrolledOnOff/UncontrolledOnOff";
+import {Lamp} from "./components1/OnOff/onOff";
+
 
 
 
 
 function App(props:any) {
     let [ratingValue, setRatingValue] = useState<RatingValueType>(0)
+    let [accordionCollapsed, setCollapsed] = useState<boolean>(false)
+    let [switchOn, setSwitchOn] = useState<boolean>(false)
+    let [switchOnUnc, setSwitchOnUnc] = useState<boolean>(true)
 
     return (
         <div className="App">
-            <Lamp />
-            <Lamp />
+            <UncontrolledLamp onChange={setSwitchOnUnc}/> {switchOnUnc.toString()}
+            <UncontrolledLamp onChange={setSwitchOnUnc}/> {switchOnUnc.toString()}
+
+            <hr />
+            <Lamp on={switchOn} onChange={(on) => {setSwitchOn(on)}}/>
+            <Lamp on={switchOn} onChange={setSwitchOn}/>
+            {/*длинная и короткая запись*/}
+
 
             <hr />
             <PageTitle title={"This is Uncontrolled components"}/>
@@ -25,7 +36,9 @@ function App(props:any) {
             <hr />
             <PageTitle title={"This is Controlled components"}/>
             <Rating value={ratingValue} onPick={setRatingValue}/>
-            <Accordion titleValue={"Menu"} collapsed={false}/>
+            <Accordion titleValue={"Menu"}
+                       collapsed={accordionCollapsed}
+                       onChange={()=> {setCollapsed(!accordionCollapsed)}}/>
 
 
             {/*<PageTitle title={"My friends"}/>*/}

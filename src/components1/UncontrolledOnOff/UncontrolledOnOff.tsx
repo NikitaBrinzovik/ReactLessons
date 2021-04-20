@@ -2,11 +2,11 @@ import React, {useState} from "react";
 import s from "./onOff.module.css";
 type LampType = {
     //on: boolean
-
+    onChange:(on:boolean)=>void
 
 }
 
-export function Lamp(props:LampType) {
+export function UncontrolledLamp(props:LampType) {
     let [on,setOn] = useState(true);
     //let on = true;
 
@@ -40,13 +40,20 @@ export function Lamp(props:LampType) {
         backgroundColor: on ? "green" : "red",
     };
 
-    return (
-        <div className={s.ee}>
-            <div style={onStyle} onClick={() => {setOn(true)}}>on</div>
-            <div style={offStyle} onClick={() => {setOn(false)}}>off</div>
+    const onClicked = () => {
+        setOn(true)
+        props.onChange(true)
+    };
+    const offClicked = () => {
+        setOn(false)
+        props.onChange(false)
+    };
 
+    return <div className={s.ee}>
+            <div style={onStyle} onClick={onClicked}>on</div>
+            <div style={offStyle} onClick={offClicked}>off</div>
             <button style={indicatorStyle}>f</button>
-        </div>
-    )
+    </div>
+
 
 }
