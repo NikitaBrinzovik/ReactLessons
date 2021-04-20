@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import s from "./onOff.module.css";
 
-type LampType = {
+export type LampType = {
     on: boolean
     onChange:(on:boolean)=> void
 }
