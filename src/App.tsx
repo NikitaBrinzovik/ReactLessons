@@ -22,7 +22,7 @@ function App() {
             <Rating value={3}/>
             <Rating value={1}/>
             <Rating value={5}/>
-            <UncontrolledAccordion titleValue={"Menu"} collapsed={false}/>
+            <UncontrolledAccordion titleValue={"Menu"}/>
 
 
             {/*<PageTitle title={"My friends"}/>*/}

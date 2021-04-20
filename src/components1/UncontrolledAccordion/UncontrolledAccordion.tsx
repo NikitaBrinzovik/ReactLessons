@@ -4,7 +4,7 @@ import {UncontrolledAccordionBody} from "./UncontrolledAccordionBody";
 
 type AccordionPropsType = {
     titleValue: string
-    collapsed: boolean
+    // collapsed: boolean
 }
 
 function UncontrolledAccordion(props: AccordionPropsType) {
@@ -13,7 +13,8 @@ function UncontrolledAccordion(props: AccordionPropsType) {
     return (
         <div>
             <UncontrolledAccordionTitle title={props.titleValue}/>
-            <UncontrolledAccordionBody collapsed={props.collapsed}/>
+            <UncontrolledAccordionBody />
+            {/*collapsed={props.collapsed}*/}
         </div>
     );
 }

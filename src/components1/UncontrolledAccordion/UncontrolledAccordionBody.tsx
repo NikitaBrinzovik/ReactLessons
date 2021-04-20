@@ -1,20 +1,27 @@
-import React from "react";
+import React, {useState} from "react";
 
 type AccordionBodyPropsType = {
-    collapsed: boolean
+    // collapsed: boolean
 }
 
 export function UncontrolledAccordionBody(props: AccordionBodyPropsType) {
     console.log("AccordionBody is rendering")
+    let [collapsed, setCollapsed] = useState(true);
 
-    if (!props.collapsed ) {
+    if (collapsed) {
         return (
-            <ul>
-                <li>css</li>
-                <li>HTML</li>
-                <li>JS</li>
-                <li>TS</li>
-            </ul>)
-    } else { return <></>
+            <div>
+                <button onClick={() => setCollapsed(false)}>collapse</button>
+                <ul style={{listStyle:"none"}}>
+                    <li>css</li>
+                    <li>HTML</li>
+                    <li>JS</li>
+                    <li>TS</li>
+                </ul>
+            </div>
+        )
+
+    } else {
+        return <button onClick={() => setCollapsed(true)}>expand</button>
     }
 }
