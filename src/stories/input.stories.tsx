@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import {Story, Meta} from '@storybook/react';
+import React, {ChangeEvent, useRef, useState} from 'react';
 
 
 export default {
@@ -13,17 +12,26 @@ export default {
 export const UncontrolledInput = () => <input/>;
 export const TrackedValueOfUncontrolledInput = () => {
     const [value, setValue] = useState('')
-    return <><input onChange={(event) => {
+    const ourOnChange = (event: ChangeEvent<HTMLInputElement>) => {
         const actualValue = event.currentTarget.value;
         setValue(actualValue)
-    } }/> - {value}</>
+    }
+    return <><input onChange={ourOnChange}/> - {value}</>
 }
 
 export const GetValueOfUncontrolledInputByButtonPress = () => {
-    const [value, setValue] = useState('')
-    return <><input /> <button onClick={ () => {setValue(value)}}> save </button> - actual value:{value}</>
+    const [value, setValue] = useState('');
+    const inputRef = useRef<HTMLInputElement>(null);
+    const save = () => {
+        const el = inputRef.current as HTMLInputElement;
+        setValue(el.value)
+    }
+
+    return <><input ref={inputRef}/>
+        <button onClick={save}> save</button>
+        - actual value:{value}</>
 
 }
 
 
-export const ControlledInputWithFixValue = () => <input value={"ggg"}/>;
+export const ControlledInputWithFixValue = () => <input value={"hard-code"}/>;
