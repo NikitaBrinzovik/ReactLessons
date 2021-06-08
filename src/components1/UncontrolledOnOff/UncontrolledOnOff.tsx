@@ -3,11 +3,12 @@ import s from "./onOff.module.css";
 type LampType = {
     //on: boolean
     onChange:(on:boolean)=>void
+    defaultOn?: boolean //создали для storybook
 
 }
 
 export function UncontrolledLamp(props:LampType) {
-    let [on,setOn] = useState(true);
+    let [on,setOn] = useState(props.defaultOn ? props.defaultOn : false);
     //let on = true;
 
     const onStyle = {

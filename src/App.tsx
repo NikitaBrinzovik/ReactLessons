@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import './App.css';
 import {Accordion} from './components1/Accordion/accordion';
 import Rating, {RatingValueType} from './components1/Accordion/Rating/Rating';
-import UncontrolledAccordion from "./components1/UncontrolledAccordion/UncontrolledAccordion";
-import UncontrolledRating from './components1/UncontrolledAccordion/UncontrolledRating';
+import {UncontrolledAccordion} from "./components1/UncontrolledAccordion/UncontrolledAccordion";
+import {UncontrolledRating} from './components1/UncontrolledAccordion/UncontrolledRating/UncontrolledRating';
 import {UncontrolledLamp} from "./components1/UncontrolledOnOff/UncontrolledOnOff";
 import {Lamp} from "./components1/OnOff/onOff";
 
@@ -17,6 +17,7 @@ function App(props:any) {
     let [switchOn, setSwitchOn] = useState<boolean>(false)
     let [switchOnUnc, setSwitchOnUnc] = useState<boolean>(true)
 
+    const onAccordionTitleChange = () => {setCollapsed(!accordionCollapsed)}
     return (
         <div className="App">
             <UncontrolledLamp onChange={setSwitchOnUnc}/> {switchOnUnc.toString()}
@@ -30,7 +31,7 @@ function App(props:any) {
 
             <hr />
             <PageTitle title={"This is Uncontrolled components"}/>
-            <UncontrolledRating/>
+            <UncontrolledRating onChange={setRatingValue} defaultValue={ratingValue}/>
             <UncontrolledAccordion titleValue={"Menu"}/>
 
             <hr />
@@ -38,7 +39,7 @@ function App(props:any) {
             <Rating value={ratingValue} onPick={setRatingValue}/>
             <Accordion titleValue={"Menu"}
                        collapsed={accordionCollapsed}
-                       onChange={()=> {setCollapsed(!accordionCollapsed)}}/>
+                       onAccordionTitleChange= {onAccordionTitleChange}/>
 
 
             {/*<PageTitle title={"My friends"}/>*/}

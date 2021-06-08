@@ -1,14 +1,18 @@
 import React, {useState} from "react";
-import {UncontrolledAccordionTitle} from "./UncontrolledAccordionTitle";
-import {UncontrolledAccordionBody} from "./UncontrolledAccordionBody";
 
 type UncontrolledAccordionPropsType = {
     titleValue: string
+}
+type UncontrolledAccordionTitlePropsType = {
+    title: string
+    onClick: () => void
+}
+type AccordionBodyPropsType = {
     // collapsed: boolean
 }
 
 
-function UncontrolledAccordion(props: UncontrolledAccordionPropsType) {
+export function UncontrolledAccordion(props: UncontrolledAccordionPropsType) {
     let [collapsed, setCollapsed] = useState(false)
     console.log("Accordion is rendering")
     return (
@@ -17,13 +21,31 @@ function UncontrolledAccordion(props: UncontrolledAccordionPropsType) {
                 title={props.titleValue}
                 onClick={() => {setCollapsed(!collapsed)}}
             />
-
-
             { !collapsed && <UncontrolledAccordionBody /> }
-
         </div>
     );
 }
 
+export function UncontrolledAccordionTitle(props: UncontrolledAccordionTitlePropsType) {
+    return <h3 onClick={() => {props.onClick()}}>{props.title}</h3>
+}
 
-export default UncontrolledAccordion;
+export function UncontrolledAccordionBody(props: AccordionBodyPropsType) {
+    let [collapsed, setCollapsed] = useState(true);
+
+    if (collapsed) {
+        return (
+            <div>
+                {/*<button onClick={() => setCollapsed(false)}>collapse</button>*/}
+                <ul style={{listStyle:"none"}}>
+                    <li>css</li>
+                    <li>HTML</li>
+                    <li>JS</li>
+                    <li>TS</li>
+                </ul>
+            </div>
+        )
+    } else {
+        return <button onClick={() => setCollapsed(true)}>expand</button>
+    }
+}

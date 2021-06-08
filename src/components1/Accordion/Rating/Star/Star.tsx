@@ -1,5 +1,5 @@
 import React from "react";
-import {RatingValueType} from "../Rating/Rating";
+import {RatingValueType} from "../Rating";
 
 type StarPropsType = {
     selected: boolean

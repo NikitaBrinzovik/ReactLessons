@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import { Story, Meta } from '@storybook/react';
 import Rating, {RatingPropsType, RatingValueType} from "./Rating";
 
-
-
 export default {
     title: 'Rating stories',
     component: Rating,
