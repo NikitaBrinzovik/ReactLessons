@@ -8,38 +8,44 @@ import {UncontrolledLamp} from "./components1/UncontrolledOnOff/UncontrolledOnOf
 import {Lamp} from "./components1/OnOff/onOff";
 
 
-
-
-
-function App(props:any) {
+function App(props: any) {
     let [ratingValue, setRatingValue] = useState<RatingValueType>(0)
     let [accordionCollapsed, setCollapsed] = useState<boolean>(false)
     let [switchOn, setSwitchOn] = useState<boolean>(false)
     let [switchOnUnc, setSwitchOnUnc] = useState<boolean>(true)
 
-    const onAccordionTitleChange = () => {setCollapsed(!accordionCollapsed)}
+    const onAccordionTitleChange = () => {
+        setCollapsed(!accordionCollapsed)
+    }
     return (
         <div className="App">
             <UncontrolledLamp onChange={setSwitchOnUnc}/> {switchOnUnc.toString()}
             <UncontrolledLamp onChange={setSwitchOnUnc}/> {switchOnUnc.toString()}
 
-            <hr />
-            <Lamp on={switchOn} onChange={(on) => {setSwitchOn(on)}}/>
+            <hr/>
+            <Lamp on={switchOn} onChange={(on) => {
+                setSwitchOn(on)
+            }}/>
             <Lamp on={switchOn} onChange={setSwitchOn}/>
             {/*длинная и короткая запись*/}
 
 
-            <hr />
+            <hr/>
             <PageTitle title={"This is Uncontrolled components"}/>
             <UncontrolledRating onChange={setRatingValue} defaultValue={ratingValue}/>
             <UncontrolledAccordion titleValue={"Menu"}/>
 
-            <hr />
+            <hr/>
             <PageTitle title={"This is Controlled components"}/>
             <Rating value={ratingValue} onPick={setRatingValue}/>
             <Accordion titleValue={"Menu"}
                        collapsed={accordionCollapsed}
-                       onAccordionTitleChange= {onAccordionTitleChange}/>
+                       onAccordionTitleChange={onAccordionTitleChange}
+                       items={[]}
+                       onClick={() => {
+                       }}
+                       color={""}
+            />
 
 
             {/*<PageTitle title={"My friends"}/>*/}
