@@ -6,6 +6,7 @@ import {UncontrolledAccordion} from "./components1/UncontrolledAccordion/Uncontr
 import {UncontrolledRating} from './components1/UncontrolledAccordion/UncontrolledRating/UncontrolledRating';
 import {UncontrolledLamp} from "./components1/UncontrolledOnOff/UncontrolledOnOff";
 import {Lamp} from "./components1/OnOff/onOff";
+import {Select} from "./components1/Select/Select";
 
 
 function App(props: any) {
@@ -56,6 +57,7 @@ function App(props: any) {
             {/*<Rating value={3}/>*/}
             {/*<Rating value={2}/>*/}
             {/*<Accordion titleValue={"second menu"} collapsed={false}/>*/}
+            <Select ourOnChange={(x:any)=>console.log(x)} items={[{value: "1", title: 'minsk'}, {value: "2", title: 'spb'},]}/>
         </div>
     );
 }

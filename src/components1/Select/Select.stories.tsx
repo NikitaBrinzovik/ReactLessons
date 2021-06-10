@@ -1,26 +1,40 @@
 import {ItemType, Select, SelectPropsType} from "./Select";
 import {Meta, Story} from "@storybook/react";
 import {ChangeEvent, useState} from "react";
+import {action} from "@storybook/addon-actions";
 
 export default {
     title: 'Select',
     component: Select,
-    argTypes: {}
+    argTypes: {
+        ourOnChange: {table: 'func'}
+    }
 } as Meta
 
-export const ControlledSelect: Story<SelectPropsType> = (args) => {
-    const [parentValue, setParentValue] = useState('');
+export const SelectExample: Story<SelectPropsType> = (args) => {
+    const [value, setValue] = useState('2');
 
-    let ourOnChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        setParentValue(e.currentTarget.value)
-    };
-    return <Select {...args} ourOnChange={ourOnChange} value={parentValue}/>
+    return <Select
+        {...args}
+        value={value}
+        ourOnChange={setValue}
+    />
 }
 
-ControlledSelect.args = {
-    //value: 'fff',
-    // ourOnChange: (value) => {
-    //     alert(`user with ID ${value} trying to do something`)
-    // },
-    items: [{value: 1, title: 'minsk'}, {value: 1, title: 'spb'},]
+export const SelectExampleWithoutValue = () => {
+    const [value, setValue] = useState(null);
+    return <>
+        <Select
+            //ourOnChange={action(`user with ID`)}
+            ourOnChange={setValue}
+            value={value}
+            items={[{value: "1", title: 'minsk'}, {value: "2", title: 'spb'},]}
+        />
+    </>
+}
+
+SelectExample.args = {
+    //value: '2',
+    //ourOnChange: (value) => {action(`user with ID ${value} trying to do something`)()},
+    items: [{value: "1", title: 'minsk'}, {value: "2", title: 'spb'},{value: "3", title: 'kiev'}]
 }

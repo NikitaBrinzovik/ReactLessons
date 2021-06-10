@@ -1,0 +1,27 @@
+.select span.main{
+    border: 2px solid purple;
+    display: inline-block;
+    min-height: 20px;
+    min-width: 80px;
+    /*background: red;*/
+}
+
+
+.items {
+    /*display: none;!*его не видно*!*/
+    position: absolute;
+    border: 1px solid aqua;
+    padding: 5px;
+    /*background: cadetblue;*/
+}
+/*.select.active .items {
+    display: block;
+    border: 1px solid green;
+
+}*/
+
+.item.selected {
+    background: cadetblue;
+    color: aliceblue;
+}
+
