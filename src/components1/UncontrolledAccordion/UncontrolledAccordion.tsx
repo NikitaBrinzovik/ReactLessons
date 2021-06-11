@@ -11,27 +11,12 @@ type AccordionBodyPropsType = {
     // collapsed: boolean
 }
 
-
-export function SecretUncontrolledAccordion(props: UncontrolledAccordionPropsType) {
-    let [collapsed, setCollapsed] = useState(false)
-    console.log("Accordion is rendering")
-    return (
-        <div>
-            <UncontrolledAccordionTitle
-                title={props.titleValue}
-                onClick={() => {setCollapsed(!collapsed)}}
-            />
-            { !collapsed && <UncontrolledAccordionBody /> }
-        </div>
-    );
-}
-
 export function SecretUncontrolledAccordionTitle(props: UncontrolledAccordionTitlePropsType) {
     return <h3 onClick={() => {props.onClick()}}>{props.title}</h3>
 }
 
 export function SecretUncontrolledAccordionBody(props: AccordionBodyPropsType) {
-    let [collapsed, setCollapsed] = useState(true);
+    let [collapsed, setCollapsed] = useState(false);
 
     if (collapsed) {
         return (
@@ -48,6 +33,20 @@ export function SecretUncontrolledAccordionBody(props: AccordionBodyPropsType) {
     } else {
         return <button onClick={() => setCollapsed(true)}>expand</button>
     }
+}
+
+export function SecretUncontrolledAccordion(props: UncontrolledAccordionPropsType) {
+    let [collapsed, setCollapsed] = useState(false)
+    console.log("Accordion is rendering")
+    return (
+        <div>
+            <UncontrolledAccordionTitle
+                title={props.titleValue}
+                onClick={() => {setCollapsed(!collapsed)}}
+            />
+            { !collapsed && <UncontrolledAccordionBody /> }
+        </div>
+    );
 }
 
 export const UncontrolledAccordion = React.memo(SecretUncontrolledAccordion)

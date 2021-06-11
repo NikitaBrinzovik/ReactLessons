@@ -13,8 +13,8 @@ export default {
 } as Meta;
 //const callback = action("UncontrolledAccordion event fired ");
 
-export const SecretChangeAccordionCondition = () => {
+export const ChangeAccordionCondition = () => {
     return <UncontrolledAccordion titleValue={"Menu"} />
 };
 
-export const ChangeAccordionCondition = React.memo(SecretChangeAccordionCondition)
+//export const ChangeAccordionCondition = React.memo(SecretChangeAccordionCondition)
