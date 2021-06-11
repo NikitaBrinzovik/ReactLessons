@@ -8,7 +8,7 @@ export type RatingPropsType = {
     onPick: (value:RatingValueType) => void
 }
 
-function Rating(props: RatingPropsType) {
+function SecretRating(props: RatingPropsType) {
 
     console.log("Rating is rendering")
 
@@ -23,5 +23,6 @@ function Rating(props: RatingPropsType) {
     )
 }
 
+const Rating = React.memo(SecretRating)
 export default Rating;
 

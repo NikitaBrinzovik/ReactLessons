@@ -7,7 +7,7 @@ type LampType = {
 
 }
 
-export function UncontrolledLamp(props:LampType) {
+export function SecretUncontrolledLamp(props:LampType) {
     let [on,setOn] = useState(props.defaultOn ? props.defaultOn : false);
     //let on = true;
 
@@ -58,3 +58,5 @@ export function UncontrolledLamp(props:LampType) {
 
 
 }
+
+export const UncontrolledLamp = React.memo(SecretUncontrolledLamp)

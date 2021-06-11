@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React from "react";
 import s from "./onOff.module.css";
 
 export type LampType = {
     on: boolean
     onChange:(on:boolean)=> void
 }
-
-export function Lamp(props:LampType) {
+export const Lamp = React.memo(SecretLamp)
+export function SecretLamp(props:LampType) {
 
     const onStyle = {
         width: "20px",

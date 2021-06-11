@@ -12,10 +12,14 @@ export default {
     },
 } as Meta;
 const callback = action("on or off clicked");
-export const LampOn= () => <Lamp onChange={callback} on={true}/>;
-export const LampOff = () => <Lamp onChange={callback} on={false}/>;
-export const ChangeLampCondition = () => {
+
+export const SecretLampOn= () => <Lamp onChange={callback} on={true}/>;
+export const SecretLampOff = () => <Lamp onChange={callback} on={false}/>;
+export const SecretChangeLampCondition = () => {
     const [condition, setCondition] = useState<boolean>(true);
     return <Lamp on={condition} onChange={setCondition}/>;
 }
+export const LampOn = React.memo(SecretLampOn)
+export const LampOff = React.memo(SecretLampOff)
+export const ChangeLampCondition = React.memo(SecretChangeLampCondition)
 

@@ -12,7 +12,7 @@ type AccordionBodyPropsType = {
 }
 
 
-export function UncontrolledAccordion(props: UncontrolledAccordionPropsType) {
+export function SecretUncontrolledAccordion(props: UncontrolledAccordionPropsType) {
     let [collapsed, setCollapsed] = useState(false)
     console.log("Accordion is rendering")
     return (
@@ -26,11 +26,11 @@ export function UncontrolledAccordion(props: UncontrolledAccordionPropsType) {
     );
 }
 
-export function UncontrolledAccordionTitle(props: UncontrolledAccordionTitlePropsType) {
+export function SecretUncontrolledAccordionTitle(props: UncontrolledAccordionTitlePropsType) {
     return <h3 onClick={() => {props.onClick()}}>{props.title}</h3>
 }
 
-export function UncontrolledAccordionBody(props: AccordionBodyPropsType) {
+export function SecretUncontrolledAccordionBody(props: AccordionBodyPropsType) {
     let [collapsed, setCollapsed] = useState(true);
 
     if (collapsed) {
@@ -49,3 +49,7 @@ export function UncontrolledAccordionBody(props: AccordionBodyPropsType) {
         return <button onClick={() => setCollapsed(true)}>expand</button>
     }
 }
+
+export const UncontrolledAccordion = React.memo(SecretUncontrolledAccordion)
+export const UncontrolledAccordionTitle = React.memo(SecretUncontrolledAccordionTitle)
+export const UncontrolledAccordionBody = React.memo(SecretUncontrolledAccordionBody)

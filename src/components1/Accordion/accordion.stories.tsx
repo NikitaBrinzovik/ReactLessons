@@ -67,7 +67,7 @@ UnCollapsedMode.args = {
     items: [{value: 1, name: "Nick"}, {value: 2, name: "Dima"}],
 }
 
-export const ChangeAccordionCondition: Story<AccordionPropsType> = (args) => {
+export const SecretChangeAccordionCondition: Story<AccordionPropsType> = (args) => {
     const [condition, setCondition] = useState<boolean>(true);
     return <Accordion
         {...args}
@@ -75,7 +75,7 @@ export const ChangeAccordionCondition: Story<AccordionPropsType> = (args) => {
         onAccordionTitleChange={() => setCondition(!condition)}
     />
 };
-ChangeAccordionCondition.args = {
+SecretChangeAccordionCondition.args = {
     //color:"green",
     titleValue: "Menu",
     items: [{value: 1, name: "Nick"}, {value: 2, name: "Dima"}],
@@ -83,3 +83,5 @@ ChangeAccordionCondition.args = {
         alert(`user with ID ${value}`)
     },
 }
+
+export const ChangeAccordionCondition = React.memo(SecretChangeAccordionCondition)

@@ -1,7 +1,6 @@
-import {ItemType, Select, SelectPropsType} from "./Select";
+import { Select, SelectPropsType} from "./Select";
 import {Meta, Story} from "@storybook/react";
-import {ChangeEvent, useState} from "react";
-import {action} from "@storybook/addon-actions";
+import React, { useState} from "react";
 
 export default {
     title: 'Select',
@@ -11,7 +10,7 @@ export default {
     }
 } as Meta
 
-export const SelectExample: Story<SelectPropsType> = (args) => {
+export const SecretSelectExample: Story<SelectPropsType> = (args) => {
     const [value, setValue] = useState('2');
 
     return <Select
@@ -21,7 +20,7 @@ export const SelectExample: Story<SelectPropsType> = (args) => {
     />
 }
 
-export const SelectExampleWithoutValue = () => {
+export const SecretSelectExampleWithoutValue = () => {
     const [value, setValue] = useState(null);
     return <>
         <Select
@@ -33,8 +32,11 @@ export const SelectExampleWithoutValue = () => {
     </>
 }
 
-SelectExample.args = {
+SecretSelectExample.args = {
     //value: '2',
     //ourOnChange: (value) => {action(`user with ID ${value} trying to do something`)()},
     items: [{value: "1", title: 'minsk'}, {value: "2", title: 'spb'},{value: "3", title: 'kiev'}]
 }
+
+export const SelectExampleWithoutValue = React.memo(SecretSelectExampleWithoutValue)
+export const SelectExample = React.memo(SecretSelectExample)

@@ -8,7 +8,7 @@ type StarPropsType = {
 
 }
 
-function Star(props: StarPropsType) {
+function SecretStar(props: StarPropsType) {
 
         return <button onClick={ () => { props.onPick(props.value)} }>
             {props.selected
@@ -18,5 +18,5 @@ function Star(props: StarPropsType) {
 
 
 }
-
+const Star = React.memo(SecretStar)
 export default Star;

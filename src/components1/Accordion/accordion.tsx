@@ -33,7 +33,7 @@ export type ItemType = {
     name: string
 }
 
-export function Accordion(props: AccordionPropsType) {
+export function SecretAccordion(props: AccordionPropsType) {
     return (
         <div>
             <AccordionTitle title={props.titleValue}
@@ -45,17 +45,17 @@ export function Accordion(props: AccordionPropsType) {
     );
 }
 
-export function AccordionTitle(props: AccordionTitlePropsType) {
+export function SecretAccordionTitle(props: AccordionTitlePropsType) {
     console.log("AccordionTitle is rendering")
     return <h3
         style={{color: props.color ? props.color : "orange"}}
-        onClick={(e) => props.onAccordionTitleChange()
+        onClick={() => props.onAccordionTitleChange()
         }>
         {props.title}
     </h3>
 }
 
-export function AccordionBody(props: AccordionBodyPropsType) {
+export function SecretAccordionBody(props: AccordionBodyPropsType) {
     return (
         <ul>
             {props.items.map((i, index) => <li onClick={() => {
@@ -63,3 +63,7 @@ export function AccordionBody(props: AccordionBodyPropsType) {
             }} key={index}>{i.name}</li>)}
         </ul>)
 }
+
+export const AccordionTitle = React.memo(SecretAccordionTitle)
+export const Accordion = React.memo(SecretAccordion)
+export const AccordionBody = React.memo(SecretAccordionBody)
