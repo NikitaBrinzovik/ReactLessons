@@ -59,6 +59,7 @@ function App(props: any) {
             {/*<Rating value={2}/>*/}
             {/*<Accordion titleValue={"second menu"} collapsed={false}/>*/}
             <ExampleReactMemo />
+
             <Select ourOnChange={(x:any)=>console.log(x)} items={[{value: "1", title: 'minsk'}, {value: "2", title: 'spb'},]}/>
         </div>
     );
