@@ -10,7 +10,7 @@ function generateData () {
 }
 export const ExampleUseState = () => {
     console.log('ExampleUseState')
-    const [state, setState] = useState(generateData)
+    const [state, setState] = useState<number>(generateData)
     /*const changer = (state:number) => {
         return state + 1;
     }*/
