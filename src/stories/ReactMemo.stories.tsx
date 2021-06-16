@@ -10,7 +10,7 @@ export const SecretNewMessagesCounter = (props: {count:number}) => {
     console.log('uuu you touch my ta-la-la')
     return <div>{props.count}</div>
 }
-export const UsersSecret = (props: { users: Array<string> }) => {
+const UsersSecret = (props: { users: Array<string> }) => {
     console.log('uuu you touch my din-din-don')//мы использовали react.memo и теперь
     //этот лог срабатывает только когда рисуют юзера, а не всю компоненту ExampleReactMemo
     return <div>

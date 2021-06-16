@@ -1,0 +1,89 @@
+import React, {useMemo, useState} from "react";
+import {Story} from "@storybook/react";
+import {ExampleReactMemo} from "./ReactMemo.stories";
+
+export default {
+    title: "useMemo"
+}
+
+export const DifficultCounting = () => {
+
+    const [a, setA] = useState<number>(0);
+    const [b, setB] = useState<number>(0);
+
+    let resultForA = 1;
+    let resultForB = 1;
+
+    resultForA = useMemo(() => {
+        for (let i = 1; i <= a; i++) {
+            let fake = 0;
+            while (fake < 1000) {
+                fake++;
+                let fakeValue = Math.random();
+                console.log('hhh')
+
+            }
+            resultForA *= i;
+        }//вычисления, которые надо будет сделать при изменении зависимостей
+        return resultForA
+    }, [a]);//второй параметр useMemo и есть зависимости, указ в квадр скобках
+
+    for (let i = 1; i <= b; i++) {
+        resultForB *= i;
+    }
+
+    return <>
+        <input value={a} onChange={(e) => setA(Number(e.currentTarget.value))}/>
+        <input value={b} onChange={(e) => setB(+e.currentTarget.value)}/>
+        <hr/>
+        <div>
+            result for a:{resultForA}
+        </div>
+        <div>
+            result for b:{resultForB}
+        </div>
+    </>
+}
+
+const UsersSecret = (props: { users: Array<string> }) => {
+    console.log('UsersSecret: uuu you touch my din-din-don')//мы использовали react.memo и теперь
+    //этот лог срабатывает только когда рисуют юзера, а не всю компоненту ExampleReactMemo
+    return <div>
+        {props.users.map((u, i) => <div key={i}>{u}</div>)}
+    </div>
+}
+
+const Users = React.memo(UsersSecret);
+
+export const HelpsReactMemo = () => {
+    console.log('HelpsReactMemo: uts-uts-baby')
+    const arr = ["Nick", "Dima", "Polina", "anaconda", "Ana"];
+    const [counter, setCounter] = useState(0);
+    const [users, setUsers] = useState(arr);
+    const addUser = () => {
+        let newUser = ( 'userXa ' + new Date().getTime());
+        let newUsers = [...users,  newUser];
+        setUsers(newUsers)}
+
+    const newArray = useMemo(() => {
+        const inNewArray = users.filter(u => u.toLowerCase().indexOf('a')> -1)//не понял зачем toLowerCase
+        return inNewArray
+        //Запись в одну строку:
+        //return users.filter(u => u.toUpperCase().indexOf('a')> -1)
+    }, [users])
+    //}, [users, counter]) -так будет перерисовываться массив при увеличении счётчика(бессмысленно)
+
+    return <>
+        <button onClick={() => setCounter(counter + 1)}>+</button>
+        <button onClick={() => addUser()}> add user</button>
+        {counter}
+        <Users users={newArray}/>
+    </>
+
+}
+/*const Template: Story<any> = (args) => <HelpsReactMemo {...args} />;
+export const ReactMemo = Template.bind({})
+ReactMemo.args = {}*/
+
+
+

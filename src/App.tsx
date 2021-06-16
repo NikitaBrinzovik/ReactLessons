@@ -7,7 +7,7 @@ import {UncontrolledRating} from './components1/UncontrolledAccordion/Uncontroll
 import {UncontrolledLamp} from "./components1/UncontrolledOnOff/UncontrolledOnOff";
 import {Lamp} from "./components1/OnOff/onOff";
 import {Select} from "./components1/Select/Select";
-import {ExampleReactMemo} from "./stories/reactMemo.stories";
+import {ExampleReactMemo} from "./stories/ReactMemo.stories";
 
 
 function App(props: any) {
