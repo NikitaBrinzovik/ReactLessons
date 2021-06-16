@@ -1,11 +1,10 @@
-import React, {useMemo, useState} from "react";
-import {Story} from "@storybook/react";
-import {ExampleReactMemo} from "./ReactMemo.stories";
+import React, {useCallback, useMemo, useState} from "react";
 
 export default {
-    title: "useMemo"
+    title: "useMemo and useCallback"
 }
 
+//lesson 17 useMemo for difficult counting
 export const DifficultCounting = () => {
 
     const [a, setA] = useState<number>(0);
@@ -20,7 +19,7 @@ export const DifficultCounting = () => {
             while (fake < 1000) {
                 fake++;
                 let fakeValue = Math.random();
-                console.log('hhh')
+                console.log(fakeValue)
 
             }
             resultForA *= i;
@@ -45,6 +44,7 @@ export const DifficultCounting = () => {
     </>
 }
 
+// lesson 17 second half: useMemo helping React.memo
 const UsersSecret = (props: { users: Array<string> }) => {
     console.log('UsersSecret: uuu you touch my din-din-don')//мы использовали react.memo и теперь
     //этот лог срабатывает только когда рисуют юзера, а не всю компоненту ExampleReactMemo
@@ -85,5 +85,50 @@ export const HelpsReactMemo = () => {
 export const ReactMemo = Template.bind({})
 ReactMemo.args = {}*/
 
+
+//  LESSON 18: useCallback
+type BooksSecretPropsType ={
+    //books: Array<string>
+    addBook: ()=>void
+}
+const BooksSecret = (props:BooksSecretPropsType) => {
+    console.log('BooksSecret: oh you touch my din-din-don')//мы использовали react.memo и теперь
+    //этот лог срабатывает только когда рисуют books, а не всю компоненту
+    return <div>
+        <button onClick={() => props.addBook()}> add book</button>
+        {/*{props.books.map((book, i) => <div key={i}>{book}</div>)}*/}
+    </div>
+}
+
+const Books = React.memo(BooksSecret);
+export const LikeUseCallbackMemo = () => {
+    console.log('LikeUseCallbackMemo: uts-uts-babysss')
+    const arr = ["React", "JS", "TS", "for kids", "groack"];
+    const [counter, setCounter] = useState(0);
+    const [books, setBooks] = useState(arr);
+
+    const memoizedAddBook = useMemo(() => {
+        return () => {
+            console.log(books)
+            let newBooks = [...books,  'Angular ' + new Date().getTime()];
+            setBooks(newBooks)
+        }
+    }, [books])
+    const memoizedAddBook2 = useCallback(() => {// тоже самое, что и выше, но без лишней конструкции
+            console.log(books)
+            let newBooks = [...books,  'Angular ' + new Date().getTime()];
+            setBooks(newBooks)
+    }, [books])
+
+    return <>
+        <button onClick={() => setCounter(counter + 1)}>{counter}</button>
+        <Books
+            /*addBook={addBook}/>*/
+            /*addBook={memoizedAddBook}*/
+            addBook={memoizedAddBook2}
+        />
+    </>
+
+}
 
 
