@@ -8,6 +8,7 @@ import {UncontrolledLamp} from "./components1/UncontrolledOnOff/UncontrolledOnOf
 import {Lamp} from "./components1/OnOff/onOff";
 import {Select} from "./components1/Select/Select";
 import {ExampleReactMemo} from "./stories/ReactMemo.stories";
+import { Clock } from './components1/clock/Clock';
 
 
 function App(props: any) {
@@ -59,7 +60,7 @@ function App(props: any) {
             {/*<Rating value={2}/>*/}
             {/*<Accordion titleValue={"second menu"} collapsed={false}/>*/}
             <ExampleReactMemo />
-
+            <Clock />
             <Select ourOnChange={(x:any)=>console.log(x)} items={[{value: "1", title: 'minsk'}, {value: "2", title: 'spb'},]}/>
         </div>
     );

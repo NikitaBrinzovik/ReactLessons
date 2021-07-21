@@ -117,7 +117,7 @@ export const LikeUseCallbackMemo = () => {
     const memoizedAddBook2 = useCallback(() => {// тоже самое, что и выше, но без лишней конструкции
             console.log(books)
             let newBooks = [...books,  'Angular ' + new Date().getTime()];
-            setBooks(newBooks)
+        {setBooks(newBooks)}
     }, [books])
 
     return <>
