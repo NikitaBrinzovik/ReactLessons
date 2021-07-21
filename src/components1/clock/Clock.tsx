@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 
 type PropsType = {}
 
-export const Clock: React.FC<PropsType> = (props) => {
+export const Clock: React.FC<PropsType> = () => {
     const [date, setDate] = useState(new Date())
 
     useEffect(() => {//создали для ассинхронных действий
@@ -18,8 +18,7 @@ export const Clock: React.FC<PropsType> = (props) => {
     }, [])
 
 
-
-    const atiZeroString = (num: number) =>  num < 10 ? "0" + num : num//если число от 1-9, добавляем ноль вперёд
+    const atiZeroString = (num: number) => num < 10 ? "0" + num : num//если число от 1-9, добавляем ноль вперёд
     const hoursStrings = atiZeroString(date.getHours())//проверки на двузначность (отправляем в в ф-ию выше)
     //const secondStrings = atiZeroString(date.getSeconds()) //вставили сразу в return без исп переменных
 
