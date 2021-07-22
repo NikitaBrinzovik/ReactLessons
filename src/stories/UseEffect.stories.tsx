@@ -5,13 +5,13 @@ import React, {useEffect, useState} from "react";
 }*/
 
 export const SimpleExample = () => {
-     let [counter, setCounter] = useState(1)
-     let [fake, setFake] = useState(1)
+    let [counter, setCounter] = useState(1)
+    let [fake, setFake] = useState(1)
 
     console.log('SimpleExample')
 
     //Наиболее популярные варианты использования useEffect:
-    useEffect(()=>{
+    useEffect(() => {
         //api.getUsers().then('')
         //setInterval
         //indexedDB
@@ -20,19 +20,19 @@ export const SimpleExample = () => {
     })
 
     //отрисовка эффекта с разными зависимостями [] :
-    useEffect(()=>{
+    useEffect(() => {
         console.log('useEffect: every render');
     })
-    useEffect(()=>{
+    useEffect(() => {
         console.log('useEffect: only first render (componentDidMount)');
     }, [])
-    useEffect(()=>{
+    useEffect(() => {
         console.log('useEffect: first render and every time with counter');
     }, [counter])
 
     //
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log('useEffect');
         document.title = counter.toString();//смотреть через iframe
     })
@@ -98,7 +98,9 @@ export const ResetEffectExample = () => {
         }
     }, [counter])
 
-    const increase = () => { setCounter(counter + 1) }
+    const increase = () => {
+        setCounter(counter + 1)
+    }
 
     return <>
         Hello, counter: {counter}
@@ -112,11 +114,10 @@ export const KeyTrackerExample = () => {
 
     useEffect(() => {
         //хотим узнать что, что-то происходит за пределами компоненты
-        window.document.addEventListener('keypress',  ()=> {//при нажатии клавиши
+        window.document.addEventListener('keypress', () => {//при нажатии клавиши
 
         })
     }, [text])
-
 
 
     return <>
