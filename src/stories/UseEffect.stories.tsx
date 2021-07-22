@@ -61,16 +61,21 @@ export const useEffectSetTimeoutSetInterval = () => {
             console.log('setTimeout');
             document.title = counter.toString();//смотреть через iframe
         }, 1000)
+
     }, [fake])
 
     //    setInterval
     useEffect(() => {
         console.log('useEffect');
 
-        setInterval(() => {
+        const intervalID = setInterval(() => {
             setCounter((state) => state + 1)
             console.log('setInterval is counting: ' + counter);
         }, 1000)
+
+        return () => {//зачистка
+            clearInterval(intervalID)
+        }
     }, [])
 
 
@@ -107,16 +112,23 @@ export const ResetEffectExample = () => {
         <button onClick={increase}>+</button>
     </>
 }
+
+
 export const KeyTrackerExample = () => {
-    let [text, setText] = useState('')
+    const [text, setText] = useState('')
+    //let [counter, setCounter] = useState(1)
 
     console.log("Component rendered" + text);//
 
     useEffect(() => {
         //хотим узнать что, что-то происходит за пределами компоненты
-        window.document.addEventListener('keypress', () => {//при нажатии клавиши
+        const handler = (e: KeyboardEvent) => {//при нажатии клавиши
+            console.log(e.key);
+            setText(text + e.key)
 
-        })
+        }
+        window.addEventListener('keypress', handler)
+        return () => window.removeEventListener('keypress', handler)//убиваем такой-же ф-ией, что и создали
     }, [text])
 
 
@@ -126,8 +138,29 @@ export const KeyTrackerExample = () => {
     </>
 }
 
+export const SetTimeoutExample = () => {
+    const [text, setText] = useState('')
+    //let [counter, setCounter] = useState(1)
+
+    console.log("Component rendered" + text);//
+
+    useEffect(() => {
+        const timeoutID = setTimeout(() => {
+            setText('3 seconds pass')
+        }, 3000)
+        return () => {
+            clearTimeout(timeoutID)
+        }
+    }, [text])
+
+
+    return <>
+        Hello: {text}
+
+    </>
+}
 
 export default {
     title: "useEffect",
-    component: SimpleExample, useEffectSetTimeoutSetInterval, ResetEffectExample, KeyTrackerExample
+    component: SimpleExample, useEffectSetTimeoutSetInterval, ResetEffectExample, KeyTrackerExample, SetTimeoutExample
 }
