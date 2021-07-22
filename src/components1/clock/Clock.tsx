@@ -1,8 +1,12 @@
 import React, {useEffect, useState} from "react";
+import {AnalogClockView} from "./AnalogClockView";
+import {DigitalClockView} from "./DigitalClockView";
 
-type PropsType = {}
+type PropsType = {
+    mode?: "digital" | "analog"
+}
 
-export const Clock: React.FC<PropsType> = () => {
+export const Clock: React.FC<PropsType> = (props) => {
     const [date, setDate] = useState(new Date())
 
     useEffect(() => {//создали для ассинхронных действий
@@ -10,24 +14,25 @@ export const Clock: React.FC<PropsType> = () => {
             setDate(new Date())//точное время)
         }, 1000)//задержка секунда
 
-
-        //этот ретурн вызовется, либо при перерисовке, либо при смерти
-        return () => {
+        return () => {//вызовется, либо при перерисовке, либо при смерти
             clearInterval(myIntervalID) //
         }
     }, [])
 
 
-    const atiZeroString = (num: number) => num < 10 ? "0" + num : num//если число от 1-9, добавляем ноль вперёд
-    const hoursStrings = atiZeroString(date.getHours())//проверки на двузначность (отправляем в в ф-ию выше)
-    //const secondStrings = atiZeroString(date.getSeconds()) //вставили сразу в return без исп переменных
+    let view
 
+    switch (props.mode) {
+        case "analog":
+            view = <AnalogClockView date={date}/>
+            break;
+        case "digital":
+        default:
+            view = <DigitalClockView date={date}/>
+    }
 
-    return <div>
-        <span>{hoursStrings}</span>{/*длинный способ*/}
-        :
-        <span>{atiZeroString(date.getMinutes())}</span>
-        :
-        <span>{atiZeroString(date.getSeconds())}</span>{/*<span>{secondStrings}</span>*/}
-    </div>
+    return view
+}
+export type ClockViewPropsType = {
+    date: Date
 }
